@@ -1,9 +1,14 @@
 import java.util.ArrayList;
 
 
+
+
+
 public class task {
     private int taskId;
+    private int data;
     private int priority;
+
     //private ArrayList <Integer> sharedList;  
 
     public task() {
@@ -11,10 +16,10 @@ public class task {
         priority=0;
     }
 
-    public task(int taskId, int priority) {
+    public task(int taskId, int data ,int priority) {
         this.taskId = taskId;
         this.priority = priority;
-        //this.sharedList = sharedList;
+        this.data=data;
     }
 
     //Accessors for Task Attributes
@@ -24,6 +29,14 @@ public class task {
 
     public void setTaskId(int taskId) {
         this.taskId = taskId;
+    }
+
+    public int getData() {
+        return this.data;
+    }
+
+    public void setData(int data) {
+        this.taskId = data;
     }
 
     public int getPriority() {
@@ -61,63 +74,76 @@ public class task {
     }
 
     //Task directive to Add Record to the resource list
+    ArrayList <task> resourcelist = new ArrayList<>();
     public void addRecord(){
         int Id= getRandomId();
         int data=getRandomData();
-
         int[] list={Id,data};
-        ArrayList <sharedList> resource = new ArrayList<>();
         for (int i = 0; i < list.length ;i+=2) {
-             sharedList shared= new sharedList(list[i], list[i+1]);
-             resource.add(shared);
-            
+             task shared= new task(list[i], list[i+1],1);
+             resourcelist.add(shared);  
         }
-
-        System.out.println(resource);
+        System.out.println(resourcelist);
+        
     }
 
+    //function to match the Id or data property within the ArrayList
+    public boolean match(int item) {
+        if (item==taskId) {
+            return true;
+        }else{
+            return false;
+        }   
+            
+    }
+
+    //Remove Record from resource list  
+    public void removeRecord(){
+    int item=getRandomId();
+       for(task Task: resourcelist){
+           if (Task.match(item)) {
+               resourcelist.remove(Task); 
+           }
+        }
+        resourcelist.toString();
+    }
+
+    // Retrieve record from within resource list and displays it
+    public void retrieveRecord(){
+        int item=getRandomId();
+
+        for (task Task: resourcelist) {
+            if (Task.getTaskId()==item) {
+                Task.resourcelist.toString();
+            } else {
+                System.out.println("error");
+                
+            } 
+        }
+    }
+
+    //Calculate all data values in the data list
+    public void calculateAllData(){
+        int total=0;
+        for (task Task : resourcelist) {
+            total+= Task.getData();
+        }
+
+        System.out.println(total);
+    }
 
     //Display function to display attribbutes and methods
     @Override
     public String toString() {
         return "{" +
-            " taskId='" + getTaskId() +
-            ", priority='" + getPriority() +
+            " taskId='" + getTaskId() + "'" +
+            ", data='" + getData() + "'" +
+            ", priority='" + getPriority() + "'" +
             "}";
     }
+    
+
 
     
-}
-
-
-//Shared list class to implement a custom ArrayList Object
-class sharedList{
-     int Id;
-     int data;
-    public sharedList(int Id, int data) {
-        this.Id = Id;
-        this.data = data;
-    }
-
-    public int getId() {
-        return this.Id;
-    }
-
-    public void setId(int Id) {
-        this.Id = Id;
-    }
-
-    public int getData() {
-        return this.data;
-    }
-
-    public void setData(int data) {
-        this.data = data;
-    }
-
-    @Override
-    public String toString() {
-        return  getId() + "," +getData() ;
-    }
 }
 
