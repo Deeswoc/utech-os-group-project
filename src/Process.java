@@ -12,6 +12,7 @@ import java.time.format.DateTimeFormatter;
 public class Process {
 	
 	private ArrayList<Integer> PID;
+	private task Task;
 	private int priority;
 	private int ArrivalTime;
 	private int BurstTime;
