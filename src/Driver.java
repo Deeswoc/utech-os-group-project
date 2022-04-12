@@ -5,6 +5,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class Driver {
     public static void main(String[] args){
         System.out.println("Hello World");
+        task.initializeSharedList();
         ConcurrentHashMap resourceList = Resource.getResources();
         System.out.print(resourceList.entrySet().toString());
 
@@ -30,6 +31,9 @@ public class Driver {
         scheduler.setProcessors(processors);
         scheduler.printProcesses();
         scheduler.startSystem();
+
+        task.printSharedList();
+
 //        scheduler.printProcesses();
 
         

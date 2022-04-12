@@ -91,13 +91,6 @@ public class Scheduler {
         this.processors = processors;
     }
 
-    public void printResources() {
-        for (int i = 0; i < resources.size(); i++) {
-
-        }
-    }
-
-
     public void startSystem() {
         boolean run = true;
         System.out.println("All Processes       :" + processes);
@@ -112,13 +105,19 @@ public class Scheduler {
             }
 
             if (processors[0].getRunningProcess() == null) {
-                System.out.println("Loading Processor1");
+//                System.out.println("Loading Processor1");
                 loadProcessor(processors[0]);
+                if(processors[0].getRunningProcess()!=null){
+                    processors[0].getRunningProcess().start();
+                }
             }
 
             if (processors[1].getRunningProcess() == null) {
-                System.out.println("Loading Processor2");
+//                System.out.println("Loading Processor2");
                 loadProcessor(processors[1]);
+                if(processors[1].getRunningProcess()!=null){
+                    processors[1].getRunningProcess().start();
+                }
             }
 
             if (processors[0].getRunningProcess() != null &&
@@ -187,6 +186,7 @@ public class Scheduler {
         } else {
             queuesEmpty = true;
         }
+
     }
 
 
