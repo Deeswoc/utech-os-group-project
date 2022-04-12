@@ -100,6 +100,8 @@ public class Scheduler {
 
     public void startSystem() {
         boolean run = true;
+        System.out.println("All Processes       :" + processes);
+        System.out.println("All Processes Count : " + processes.size());
 
         while (run) {
 
@@ -110,49 +112,60 @@ public class Scheduler {
             }
 
             if (processors[0].getRunningProcess() == null) {
+                System.out.println("Loading Processor1");
                 loadProcessor(processors[0]);
             }
 
             if (processors[1].getRunningProcess() == null) {
+                System.out.println("Loading Processor2");
                 loadProcessor(processors[1]);
             }
 
             if (processors[0].getRunningProcess() != null &&
-                    CPUclock - processors[0].getRunningProcess().GetArrivalTime() == processors[0].getRunningProcess().GetBurstTime()) {
+                    processors[0].getRunningProcess().incrementCPUTime() >= processors[0].getRunningProcess().GetBurstTime()) {
                 completed.add(processors[0].pop());
             }
 
             if (processors[1].getRunningProcess() != null &&
-                    CPUclock - processors[1].getRunningProcess().GetArrivalTime() == processors[1].getRunningProcess().GetBurstTime()) {
+                    processors[1].getRunningProcess().incrementCPUTime() >= processors[1].getRunningProcess().GetBurstTime()) {
                 completed.add(processors[1].pop());
             }
+
             if (processes.isEmpty()) {
                 run = false;
             }
             CPUclock++;
         }
+
+        System.out.println("Completed Processes: " + completed.toString());
+        System.out.println("Number of Processes: " + completed.size());
+
     }
 
     private void queueProcess(Process process) {
         switch (process.GetPid()) {
             case 1: {
                 pq1.add(process);
+                break;
             }
-            ;
             case 2: {
                 pq2.add(process);
+                break;
             }
             case 3: {
                 pq3.add(process);
+                break;
             }
             case 4: {
                 pq4.add(process);
+                break;
             }
             case 5: {
                 pq5.add(process);
+                break;
             }
-            queuesEmpty = false;
         }
+        queuesEmpty = false;
     }
 
     private void loadProcessor(Processor processor) {
@@ -175,4 +188,6 @@ public class Scheduler {
             queuesEmpty = true;
         }
     }
+
+
 }

@@ -1,6 +1,3 @@
-
-import java.util.ArrayList;
-
 import java.util.Random;
 //import java.time.LocalDate;
 import java.time.LocalTime;
@@ -16,6 +13,7 @@ public class Process implements Comparable<Process> {
 	private int priority;
 	private int ArrivalTime;
 	private int BurstTime;
+	private int CPUTime = 0;
 	private LocalTime StartTime;
 	private LocalTime EndTime;
 	private int BlockTime;
@@ -206,6 +204,15 @@ public class Process implements Comparable<Process> {
 
 	@Override
 	public String toString() {
-		return "Arrival Time: " + this.GetArrivalTime();
+
+		 return "PID: " + this.GetPid() + " \nArrival Time: " + this.GetArrivalTime() + "\n";
+	}
+
+	public int getCPUTime() {
+		return CPUTime;
+	}
+
+	public int incrementCPUTime() {
+		return CPUTime++;
 	}
 }
