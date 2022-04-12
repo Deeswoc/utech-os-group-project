@@ -39,6 +39,14 @@ public class Scheduler {
         }
 
         Collections.sort(temp);
+
+        System.out.println("_________________________________________________________");
+        System.out.println("=====PROCESSES=====");
+        for(int i = 0; i<temp.size(); i++){
+            System.out.println(temp.get(i));
+        }
+        System.out.println("_________________________________________________________");
+
         processes = new LinkedList<Process>(temp);
         for (int i = 0; i < 10; i++) {
             resources.add(new Integer[]{0, 0});
@@ -63,7 +71,10 @@ public class Scheduler {
 
     public void printProcesses() {
         Process process = null;
-        System.out.println(processes);
+        List<Process> print = new ArrayList<Process>(processes);
+        for(int i = 0; i<print.size(); i++){
+            System.out.println(print.get(i));
+        }
     }
 
     @Override
@@ -93,7 +104,6 @@ public class Scheduler {
 
     public void startSystem() {
         boolean run = true;
-        System.out.println("All Processes       :" + processes);
         System.out.println("All Processes Count : " + processes.size());
 
         while (run) {
@@ -105,7 +115,7 @@ public class Scheduler {
             }
 
             if (processors[0].getRunningProcess() == null) {
-//                System.out.println("Loading Processor1");
+                System.out.println("Loading Processor1");
                 loadProcessor(processors[0]);
                 if(processors[0].getRunningProcess()!=null){
                     processors[0].getRunningProcess().start();
@@ -113,7 +123,7 @@ public class Scheduler {
             }
 
             if (processors[1].getRunningProcess() == null) {
-//                System.out.println("Loading Processor2");
+                System.out.println("Loading Processor2");
                 loadProcessor(processors[1]);
                 if(processors[1].getRunningProcess()!=null){
                     processors[1].getRunningProcess().start();
@@ -169,19 +179,19 @@ public class Scheduler {
 
     private void loadProcessor(Processor processor) {
         if (!pq1.isEmpty()) {
-            System.out.println("Getting PID: " + pq1.peek().GetPid() + " from PQ1");
+            System.out.println("Getting PID: " + pq1.peek().GetPid() + " from Priority Queue 1");
             processor.setRunningProcess(pq1.poll());
         } else if (!pq2.isEmpty()) {
-            System.out.println("Getting PID: " + pq2.peek().GetPid() + " from PQ2");
+            System.out.println("Getting PID: " + pq2.peek().GetPid() + " from Priority Queue 2");
             processor.setRunningProcess(pq2.poll());
         } else if (!pq3.isEmpty()) {
-            System.out.println("Getting PID: " + pq3.peek().GetPid() + " from PQ3");
+            System.out.println("Getting PID: " + pq3.peek().GetPid() + " from Priority Queue 3");
             processor.setRunningProcess(pq3.poll());
         } else if (!pq4.isEmpty()) {
-            System.out.println("Getting PID: " + pq4.peek().GetPid() + " from PQ4");
+            System.out.println("Getting PID: " + pq4.peek().GetPid() + " from Priority Queue 4");
             processor.setRunningProcess(pq4.poll());
         } else if (!pq5.isEmpty()) {
-            System.out.println("Getting PID: " + pq5.peek().GetPid() + " from PQ5");
+            System.out.println("Getting PID: " + pq5.peek().GetPid() + " from Priority Queue 5");
             processor.setRunningProcess(pq5.poll());
         } else {
             queuesEmpty = true;

@@ -195,7 +195,7 @@ public class Process implements Comparable<Process> {
     @Override
     public String toString() {
 
-        return "PID: " + this.GetPid() + " \nArrival Time: " + this.GetArrivalTime() + "\n";
+        return "PID: " + this.GetPid() + " \nArrival Time: " + this.GetArrivalTime() + "\n" + "Burst Time:" + this.GetBurstTime() + "\nPriority: "  + this.priority;
     }
 
     public int getCPUTime() {

@@ -15,7 +15,9 @@ public class task {
 
     }
 
-    public task(){
+
+
+    public task() {
         this.taskId = (int) (Math.random() * (20) + 1);
         this.type = (int) (Math.random() * (4) + 1);
     }
@@ -67,7 +69,7 @@ public class task {
         sharedlist.put(Id, data);
     }
 
-    public static void printSharedList(){
+    public static void printSharedList() {
         System.out.println("Shared List: " + sharedlist);
     }
 
@@ -121,6 +123,7 @@ public class task {
                     int randRecId = (int) (Math.random() * (20) + 1);
                     int randRecData = (int) (Math.random() * (100) + 1);
                     sharedlist.put(randRecId, randRecData);
+                    printSharedList();
                     return -1;
                 }
 
@@ -131,7 +134,7 @@ public class task {
                     int randRecId = (int) (Math.random() * (20) + 1);
                     int randRecData = (int) (Math.random() * (100) + 1);
                     sharedlist.put(randRecId, randRecData);
-
+                    printSharedList();
                     return -1;
                 }
                 break;
@@ -150,11 +153,11 @@ public class task {
             case 4: {
                 if (sharedListSemaphore == 0) {
                     int sum = 0;
-                    for(int i = 0; i < sharedlist.size(); i++){
+                    for (int i = 0; i < sharedlist.size(); i++) {
                         sum += sharedlist.get(i);
                     }
-
                     System.out.println("The total of all the resources is : " + sum);
+                    printSharedList();
                     return -1;
                 }
                 break;
@@ -181,8 +184,8 @@ public class task {
                 "}";
     }
 
-    public static void initializeSharedList(){
-        for(int i = 0; i < 20; i++){
+    public static void initializeSharedList() {
+        for (int i = 0; i < 20; i++) {
             sharedlist.put(i, 0);
         }
     }
