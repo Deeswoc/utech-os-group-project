@@ -11,7 +11,7 @@ import java.time.format.DateTimeFormatter;
 @SuppressWarnings("unused")
 public class Process {
 	
-	private ArrayList<Integer> PID;
+	private int PID;
 	private task Task;
 	private int priority;
 	private int ArrivalTime;
@@ -20,11 +20,12 @@ public class Process {
 	private LocalTime EndTime;
 	private int BlockTime;
 	private DateTimeFormatter dtf;
-	
+	public static int processCount = 0;
 	
 
 	public Process() {
-		
+		processCount++;
+		this.PID = processCount;
 		// Random number Generator for Arrival Time 0 - 29
 		Random arrivaTime = new Random();
 		int ATmax = 29;
@@ -51,31 +52,9 @@ public class Process {
 		 
 		 
 		 // Array List for Process ID adding unique process ID's
-		 PID = new ArrayList<Integer>();
-		 PID.add(1);
-		 PID.add(2);
-		 PID.add(3);
-		 PID.add(4);
-		 PID.add(5);
-		 PID.add(7);
-		 PID.add(8);
-		 PID.add(9);
-		 PID.add(10);
-		 PID.add(11);
-		 PID.add(12);
-		 PID.add(13);
-		 PID.add(14);
-		 PID.add(15);
-		 PID.add(16);
-		 PID.add(17);
-		 PID.add(18);
-		 PID.add(19);
-		 PID.add(20);
-		 
-		 
 	}
 	
-	public Process(ArrayList<Integer> pid, int Priority,int AT, int BT, LocalTime ST, LocalTime ET, int BlockT){	
+	public Process(int pid, int Priority,int AT, int BT, LocalTime ST, LocalTime ET, int BlockT){
 		PID = pid;
 		priority = Priority;
 		ArrivalTime = AT;
@@ -86,12 +65,11 @@ public class Process {
 		
 	}
 	
-	public void SetPID(ArrayList<Integer> pid) {
-		
+	public void SetPID(int pid) {
 		PID = pid;
 	}
 	
-	public ArrayList<Integer> GetPid(){
+	public int GetPid(){
 		return PID;
 	}
 	
@@ -182,7 +160,7 @@ public class Process {
 	
 	public void Display()
 	{
-		System.out.println("Process ID: " + PID.get(0));
+		System.out.println("Process ID: " + PID);
 		System.out.println("Priority: " + priority);
 		System.out.println("Arrival Time: " + ArrivalTime);
 		System.out.println("Burst Time: " + BurstTime);

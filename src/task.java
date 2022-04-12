@@ -2,7 +2,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class task {
     private int taskId;
-    private ConcurrentHashMap<Integer, Integer> sharedlist= new ConcurrentHashMap<>();
+    private static ConcurrentHashMap<Integer, Integer> sharedlist= new ConcurrentHashMap<>();
 
 
     public task(int taskId, ConcurrentHashMap<Integer,Integer> sharedlist) {
