@@ -21,7 +21,15 @@ public class Driver {
 //        for(int i = 0 ; i < 20; i++){
 //            System.out.println(i +"="+ res.get(i));
 //        }
+        Processor p1 = new Processor();
+        Processor p2 = new Processor();
+        Processor[] processors = new Processor[]{p1, p2};
+
+
         Scheduler scheduler = Scheduler.getScheduler();
+        scheduler.setProcessors(processors);
+        scheduler.printProcesses();
+        scheduler.startSystem();
 //        scheduler.printProcesses();
 
         

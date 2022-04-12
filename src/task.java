@@ -3,7 +3,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class task {
     private int taskId;
     private static ConcurrentHashMap<Integer, Integer> sharedlist= new ConcurrentHashMap<>();
-
+//    private static se
 
     public task(int taskId, ConcurrentHashMap<Integer,Integer> sharedlist) {
         this.taskId = taskId;

@@ -9,7 +9,7 @@ import java.time.format.DateTimeFormatter;
 
 
 @SuppressWarnings("unused")
-public class Process {
+public class Process implements Comparable<Process> {
 	
 	private int PID;
 	private task Task;
@@ -192,7 +192,20 @@ public class Process {
 	}
 
 
-	
-	
+	@Override
+	public int compareTo(Process o) {
 
+		if(this.GetArrivalTime() > o.GetArrivalTime()){
+			return 1;
+		} else if (this.GetArrivalTime() < o.GetArrivalTime()) {
+			return -1;
+		} else {
+			return 0;
+		}
+	}
+
+	@Override
+	public String toString() {
+		return "Arrival Time: " + this.GetArrivalTime();
+	}
 }
